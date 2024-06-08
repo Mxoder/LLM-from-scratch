@@ -1,0 +1,4 @@
+torch==2.2.1
+transformers==4.40.0
+accelerate==0.29.3
+datasets==2.18.0
