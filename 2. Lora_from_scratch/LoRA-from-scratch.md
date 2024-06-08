@@ -34,7 +34,7 @@ einops
 
 具体可以见仓库的 `requirements.txt`。
 
-这次的代码和上一次文章的代码整合到一起，放在这里：[]()。
+这次的代码和上一次文章的代码整合到一起，放在这里：[Mxoder/LLM-from-scratch](https://github.com/Mxoder/LLM-from-scratch)。
 
 
 
@@ -44,7 +44,7 @@ einops
 
 简单通俗地说，LoRA 基于一个低秩假设：大模型的参数是冗余和稀疏的，其内在秩（可以理解为表征能力）是非常低的，因此可以用一种“降维”的方式来优化学习。
 
-【lora原理图】
+![lora](img/lora.png)
 
 上面这张图想必大家都见得非常多了。简单来说，LoRA 其实就是用两个更低秩的矩阵 $A_{r \times k}$ 和 $B_{d \times r}$ 来近似原参数矩阵 $W_{d \times k}$ 的效果，将原矩阵冻结以后，前向结果是原矩阵与新的近似矩阵结果的和，但反向的时候只更新 $A$ 和 $B$ 两个低秩矩阵，从而大大降低了需要训练的参数，因此属于参数高效微调（PEFT，Parameter Efficient Fine-tuning）的一种，是目前应用最广的微调方法。现在许多微调方法都是 LoRA 及其变体。
 
@@ -79,13 +79,13 @@ W(x) + lora_B(lora_A(x))
 
 先看看传统的 Transformer Decoder 的 GPT 架构（GPT2、OPT、Bloom 等）：
 
-【GPT 架构】
+![transformer](img/transformer.png)
 
 这里注意力 Attention 部分的 Q、K、V 是线性层，全连接 FFN 部分也有两个线性层（一个升维和一个降维），所以它们是可以被替换的目标。
 
 再看看现在更流行的 LLaMA 架构（Mistral、Qwen 等）：
 
-【LLaMA 架构】
+![llama](img/llama_structure.png)
 
 这里注意力的 Q、K、V 仍然是线性层，多了一个加和后的 O，它也是线性层。LLaMA 类架构中 FFN 被换成了 GLU，例如 SwiGLU、GeGLU 等，它们有三个线性层，例如图中的 up、gate、down。上面就是全部可替换的线性层。
 
@@ -1192,7 +1192,7 @@ notebook_login()
 model.push_to_hub('Qwen1.5-0.5B-LoRA-bioinstruct')
 ```
 
-
+---
 
 
 
