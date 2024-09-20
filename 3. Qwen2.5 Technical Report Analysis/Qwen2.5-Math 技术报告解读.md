@@ -11,6 +11,10 @@
 
 
 
+后一篇：[Qwen2.5-Coder 技术报告解读](Qwen2.5-Coder 技术报告解读.md)
+
+
+
 ## 1. 标题中的方法论
 
 相比于 Qwen2.5-Coder 的技术报告，Qwen2.5-Math 的技术报告多了一个副标题："Toward Mathematical Expert Model via Self-Improvement"，可以看出，这是一个贯穿整个 Qwen2.5-Math 训练流程的重要方法论——自我改进（Self-Improvement）。
